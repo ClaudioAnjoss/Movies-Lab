@@ -1,0 +1,14 @@
+.card-emphasis {
+    grid-area: emphasis;
+
+    width: 410px;
+    height: 199px;
+
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card-emphasis img {
+    width: 410px;
+    height: 300px;
+}
