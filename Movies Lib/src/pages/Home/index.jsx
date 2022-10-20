@@ -25,9 +25,22 @@ const Home = () => {
     // }, [])
 
     return (
-        <div className='container'>
+        <div className='container'>sombra
             <div className="description">
-                Descricao
+                <div className="logo">
+                    <img src="https://logosmarcas.net/wp-content/uploads/2021/03/Disney-Logo.png" alt="Logo" />
+                </div>
+                <div className="title">
+                    <img src="https://imagensemoldes.com.br/wp-content/uploads/2022/01/Logo-Luca-Disney-PNG-1280x720.png" alt="Card do filme" />
+                </div>
+                <div className="info">
+                    <div className="note">
+                        nota do filme
+                    </div>
+                    <div className="about">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet voluptates obcaecati quae et architecto, perspiciatis praesentium tempora odit aperiam? Ea animi qui quam doloribus ducimus corrupti cupiditate sapiente? Nulla, culpa?
+                    </div>
+                </div>
             </div>
             <div className="cards">
                 <form>
@@ -49,7 +62,12 @@ const Home = () => {
                     <Card />
                 </div>
             </div>
+
+            <div className="shadow">
+                <img src="https://lumiere-a.akamaihd.net/v1/images/image_3e1ab31f.jpeg" alt="" />
+            </div>
         </div>
+
     )
 }
 
