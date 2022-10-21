@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { BiSearchAlt2 } from 'react-icons/bi'
+import { BiSearchAlt2 } from 'react-icons/bi';
+import { FaStar } from 'react-icons/fa'
 import Card from "../../components/Card";
 import Card_Emphasis from "../../components/Card_Emphasis"
 
@@ -7,38 +8,44 @@ import './style.css'
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
+const imageUrl = import.meta.env.VITE_IMG;
 
 const Home = () => {
-    // const [topMovies, setTopMovies] = useState([])
+    const [topMovies, setTopMovies] = useState([])
 
-    // const getTopRatedMovies = async (url) => {
-    //     const res = await fetch(url);
-    //     const data = await res.json();
+    const getTopRatedMovies = async (url) => {
+        const res = await fetch(url);
+        const data = await res.json();
 
-    //     setTopMovies(data.results)
-    // }
+        setTopMovies(data.results)
+    }
 
-    // useEffect(() => {
-    //     const topRatedUrl = `${moviesURL}top_rated?${apiKey}`
+    useEffect(() => {
+        const topRatedUrl = `${moviesURL}top_rated?${apiKey}`
 
-    //     getTopRatedMovies(topRatedUrl)
-    // }, [])
+        getTopRatedMovies(topRatedUrl)
+
+        console.log(topMovies)
+    }, [])
 
     return (
         <div className='container'>sombra
+
             <div className="description">
                 <div className="logo">
                     <img src="https://logosmarcas.net/wp-content/uploads/2021/03/Disney-Logo.png" alt="Logo" />
                 </div>
                 <div className="title">
-                    <img src="https://imagensemoldes.com.br/wp-content/uploads/2022/01/Logo-Luca-Disney-PNG-1280x720.png" alt="Card do filme" />
+                    {topMovies.length === 0 && <p>Carregando...</p>}
+                    {topMovies.length > 0 && <h1>{topMovies[16].title}</h1>}
                 </div>
                 <div className="info">
                     <div className="note">
-                        nota do filme
+                    {topMovies.length > 0 && <h1><FaStar />{topMovies[16].vote_average}</h1>}
                     </div>
                     <div className="about">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet voluptates obcaecati quae et architecto, perspiciatis praesentium tempora odit aperiam? Ea animi qui quam doloribus ducimus corrupti cupiditate sapiente? Nulla, culpa?
+                    {topMovies.length === 0 && <p>Carregando...</p>}
+                    {topMovies.length > 0 && <p>{topMovies[16].overview}</p>}
                     </div>
                 </div>
             </div>
@@ -51,20 +58,15 @@ const Home = () => {
                 </form>
                 <h1>Popular New</h1>
                 <div className="card-list">
-                    <Card_Emphasis />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    <Card_Emphasis movie={topMovies} />
+                    {topMovies.length === 0 && <p>Carregando...</p>}
+                    {topMovies.length > 0 && topMovies.map((movie) => <Card key={movie.id} movie={movie} />)}
                 </div>
             </div>
 
             <div className="shadow">
-                <img src="https://lumiere-a.akamaihd.net/v1/images/image_3e1ab31f.jpeg" alt="" />
+                {topMovies.length === 0 && <p>Carregando...</p>}
+                {topMovies.length > 0 && <img src={imageUrl + topMovies[16].backdrop_path}></img>}
             </div>
         </div>
 

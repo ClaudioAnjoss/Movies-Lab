@@ -1,15 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import './style.css'
 
+const imageUrl = import.meta.env.VITE_IMG;
+
 // import { Container } from './styles';
 
-function Card() {
+const Card_Emphasis = ({movie}) => {
     return (
         <div className='card-emphasis'>
-            <img src="https://2.bp.blogspot.com/-TOCRLYBV3N4/UsbbAXBZmkI/AAAAAAAAPuM/DbPHOcuv6HA/s1600/A-Menina-Que-Roubava-Livros-capa-filme-1.jpg" alt="" />
+           
+            {movie.length > 0 && <Link to={`/movie${movie.id}`}><img src={imageUrl + movie[16].poster_path} alt={movie[0].title} /></Link>}
         </div>
     );
 }
 
-export default Card;
+export default Card_Emphasis;

@@ -1,13 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+import { FaStar } from 'react-icons/fa'
 
 import './style.css'
 
-// import { Container } from './styles';
+const imageUrl = import.meta.env.VITE_IMG;
 
-function Card() {
+const Card = ({ movie, showLink = true }) => {
     return (
         <div className='card'>
-            <img src="https://2.bp.blogspot.com/-TOCRLYBV3N4/UsbbAXBZmkI/AAAAAAAAPuM/DbPHOcuv6HA/s1600/A-Menina-Que-Roubava-Livros-capa-filme-1.jpg" alt="" />
+            {showLink && <Link to={`/movie${movie.id}`}><img src={imageUrl + movie.poster_path} alt={movie.title} /></Link>}
         </div>
     );
 }
