@@ -1,0 +1,94 @@
+.navbar {
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 95px;
+
+    position: absolute;
+
+    z-index: 2;
+}
+
+.navbar .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #fff;
+    margin-left: 24px;
+}
+
+.search {
+    width: 100%;
+    max-width: 525px;
+    height: 36px;
+
+    position: relative;
+}
+
+.search input {
+    width: 100%;
+    height: 36px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 6px 40px 6px 10px;
+    border: 2px solid #D1D5DB;
+    border-radius: 6px;
+    background: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.search input::placeholder {
+    color: #fff;
+}
+
+.search button {
+    width: 30px;
+    height: 36px;
+
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    background: none;
+    border: none;
+}
+
+.sign-in {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-in h1 {
+    font-weight: 700;
+    font-size: 16px;
+
+    margin-right: 27px;
+    color: #fff;
+}
+
+.sign-in img {
+    cursor: pointer;
+}
