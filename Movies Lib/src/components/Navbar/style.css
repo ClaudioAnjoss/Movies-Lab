@@ -92,3 +92,23 @@
 .sign-in img {
     cursor: pointer;
 }
+
+@media (max-width: 1000px) {
+    .sign-in {
+        display: none;
+    }
+
+    .search {
+        margin-left: 27px;
+    }
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        padding: 20px;
+    }
+    
+    .navbar .logo h1 {
+        display: none;
+    }
+}

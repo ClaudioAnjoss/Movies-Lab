@@ -1,0 +1,59 @@
+.card {
+    width: 250px;
+    height: 513px;
+    min-width: 250px !important; 
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.card img {
+    width: 250px;
+    height: 370px;
+}
+
+.card .date {
+    font-weight: 700;
+    font-size: 12px;
+    color: #9CA3AF;
+}
+
+.card h1 {
+    font-weight: 700;
+    font-size: 18px;
+    color: #111827;
+}
+
+.card .note {
+    height: 17px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #000;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.card .note span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .note span img {
+    height: 17px;
+    width: fit-content;
+    max-width: 35px;
+
+    margin-right: 10px;
+}
+
+.card .category {
+    font-weight: 700;
+    font-size: 12px;
+    color: #9CA3AF;
+}

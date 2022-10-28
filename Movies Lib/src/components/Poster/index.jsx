@@ -10,7 +10,7 @@ import './style.css'
 function Poster() {
     return (
         <div className='poster'>
-            <img src={Thumbnail} alt="Thumbnail" />
+            <img className='thumbnail' src={Thumbnail} alt="Thumbnail" />
 
             <div className="info">
                 <h1>John Wick 3 : Parabellum</h1>

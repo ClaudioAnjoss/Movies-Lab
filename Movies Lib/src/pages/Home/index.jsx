@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Card from "../../components/Card";
+import CardSkeleton from "../../components/CardSkeleton";
 import Navbar from "../../components/Navbar";
 import Poster from "../../components/Poster";
 
@@ -28,8 +30,77 @@ const Home = () => {
 
     return (
         <div className='container'>
-            <Navbar />  
-            <Poster />          
+            <Navbar />
+            <Poster />
+
+            <div className="featured">
+                <h1 className="title">Featured Movie</h1>
+                <div className="container_featured">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                
+                </div>
+            </div>
+
+            <div className="featured">
+                <h1 className="title">Featured Movie</h1>
+                <div className="container_featured">
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />     
+                </div>
+            </div>
+
+            <div className="featured">
+                <h1 className="title">Featured Movie</h1>
+                <div className="container_featured">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                
+                </div>
+            </div>
         </div>
 
     )
