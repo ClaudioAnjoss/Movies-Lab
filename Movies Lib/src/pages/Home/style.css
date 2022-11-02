@@ -4,6 +4,15 @@
     position: relative;
 }
 
+.poster--loader {
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px;
+}
+
 .featured {
     padding: 70px 98px;
 

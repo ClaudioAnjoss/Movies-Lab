@@ -11,6 +11,10 @@
     align-items: start;
 
     z-index: 1;
+
+    transition: all ease .5s;
+
+    /* transform: translateY(-500px); */
 }
 
 .poster .thumbnail {

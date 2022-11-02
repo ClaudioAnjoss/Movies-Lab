@@ -7,32 +7,34 @@ import Relevance from '../../assets/Relevance.png'
 
 import './style.css'
 
-function Poster() {
+function Poster({item}) {
+
+    // console.log(item)
     return (
         <div className='poster'>
-            <img className='thumbnail' src={Thumbnail} alt="Thumbnail" />
+            <img className='thumbnail' src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} alt="Thumbnail" />
 
             <div className="info">
-                <h1>John Wick 3 : Parabellum</h1>
+                <h1>{item.title}</h1>
 
                 <div className='note'>
                     <span>
-                        <img src={Note} alt="" />
-                        86.0 / 100
+                        <img src={Note} />
+                        {item.vote_average}
                     </span>
                     <span>
-                        <img src={Relevance} alt="" />
-                        97%
+                        <img src={Relevance} />
+                        {item.vote_count}
                     </span>
                 </div>
 
                 <p className="description">
-                    John Wick is on the run after killing a member of the international assassins' guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.
+                    {item.overview ? item.overview : 'Desculpe ocorreu um erro ao carregar a descrição'}
                 </p>
 
                 <a className='btn-detail' href="#">
                     <BiArrowFromLeft className='icon' />
-                    Details
+                    Detalhes
                 </a>
             </div>
         </div>
