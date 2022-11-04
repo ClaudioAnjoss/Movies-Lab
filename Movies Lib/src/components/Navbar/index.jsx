@@ -1,7 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
-import { BiSearchAlt } from 'react-icons/bi'
-import Data from '../../Data/Data';
+import React , { useState } from 'react';
+import { BiSearchAlt } from 'react-icons/bi';
 
 import Logo from '../../assets/Logo.png'
 import Menu from '../../assets/Menu.png'
@@ -9,7 +7,6 @@ import Menu from '../../assets/Menu.png'
 import './style.css'
 
 function Navbar(props) {
-
     const [search, setSearch] = useState('');
 
     const handleSubmit = (e) => {

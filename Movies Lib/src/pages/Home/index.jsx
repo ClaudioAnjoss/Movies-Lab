@@ -1,29 +1,22 @@
-import { useState, useEffect, useTransition } from "react";
-import Data from "../../data/Data";
-import Card from "../../components/Card";
-import CardSkeleton from "../../components/CardSkeleton";
-import Navbar from "../../components/Navbar";
-import Poster from "../../components/Poster";
-import Loader from "../../assets/Loader.gif";
-
+import { useState, useEffect, useRef } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
-import './style.css'
-import { useRef } from "react";
+import Navbar from "../../components/Navbar";
+import Poster from "../../components/Poster";
+import Card from "../../components/Card";
+import Data from "../../data/Data";
+import CardSkeleton from "../../components/CardSkeleton";
+import Loader from "../../assets/Loader.gif";
 
-const moviesURL = import.meta.env.VITE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
-const imageUrl = import.meta.env.VITE_IMG;
+import './style.css'
 
 const Home = () => {
-
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null);
     const [result, setResult] = useState('');
     const [movieSearch, setMovieSearch] = useState([]);
     const firstRenderRef = useRef(true);
-    const [searchState, setSearchState] = useState(600)
-
+    const [searchState, setSearchState] = useState(600);
 
     useEffect(() => {
         const loadAll = async () => {
@@ -40,10 +33,6 @@ const Home = () => {
         }
 
         firstRenderRef.current ? firstRenderRef.current = false : loadAll();
-
-        
-        console.log(movieSearch)
-        
     }, [])
 
     const handeLeftArrow = (id) => {
@@ -57,152 +46,59 @@ const Home = () => {
     const updateResult = async r => {
         let searchResult = await Data.getSearch(r)
 
-        await r == '' ? setMovieSearch([]) : setMovieSearch(searchResult)   
+        await r == '' ? setMovieSearch([]) : setMovieSearch(searchResult)
 
         r.length > 0 ? setSearchState(100) : setSearchState(600);
     }
-
-    // console.log(movieSearch)
-
-
 
     return (
         <div className='container'>
             <Navbar handleResult={updateResult} />
 
-            {featuredData ? <div style={{height: searchState}} className="container--poster">
-                <Poster item={featuredData} />
-            </div> : (
-                <div className="poster--loader">
-                    <img src={Loader} />
-                </div>
-            )
-            }
+            <div style={{ height: searchState }} className="container--poster">
+                {featuredData ? <Poster item={featuredData} /> : <img className="loading--poster" src={Loader} />}
+            </div>
 
             {movieSearch.length > 0 ? (
                 <div className="featured">
                     <h1 className="title">Resultado:</h1>
 
                     <div className="container_result">
-
-
                         {movieSearch[0].items.results.map((item, keys) => (
                             <Card key={keys} item={item} />
                         ))}
-                        
-                        
                     </div>
-                </div>
-            ) : (
-                movieList.length > 0 ? (
-                    movieList.map((list, key) => (
+                </div>) :
+                (movieList.length > 0 ? (movieList.map((list, key) => (
+                    <div key={key} className="featured">
+                        <h1 className="title">{list.title}</h1>
 
-                        <div key={key} className="featured">
-                            <h1 className="title">{list.title}</h1>
-
-                            <div className="container_featured">
-                                <div className="movie--left" onClick={() => handeLeftArrow(list.title)}>
-                                    <AiOutlineLeft />
-                                </div>
-
-                                <div id={list.title} className="movie--list">
-                                    {list.item.results.map((item, keys) => (
-                                        <Card key={keys} item={item} />
-                                    ))}
-                                </div>
-
-                                <div className="movie--right" onClick={() => handeRightArrow(list.title)}>
-                                    <AiOutlineRight />
-                                </div>
-                            </div>
-                        </div>
-
-                    ))
-                ) : (
-                    <div className="featured">
                         <div className="container_featured">
+                            <button className="movie--left" onClick={() => handeLeftArrow(list.title)}>
+                                <AiOutlineLeft />
+                            </button>
+
+                            <div id={list.title} className="movie--list">
+                                {list.item.results.map((item, keys) => (
+                                    <Card key={keys} item={item} />
+                                ))}
+                            </div>
+
+                            <button className="movie--right" onClick={() => handeRightArrow(list.title)}>
+                                <AiOutlineRight />
+                            </button>
+                        </div>
+                    </div>))) :
+                    (<div className="featured">
+                        <div className="container_skeleton">
                             <CardSkeleton />
                             <CardSkeleton />
                             <CardSkeleton />
                             <CardSkeleton />
                             <CardSkeleton />
                         </div>
-                    </div>
-                )
-            )}
-
-
-
-
-            {/* <div className="featured">
-                <h1 className="title">Featured Movie</h1>
-                <div className="container_featured">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                
-                </div>
-            </div>
-
-            <div className="featured">
-                <h1 className="title">Featured Movie</h1>
-                <div className="container_featured">
-                <CardSkeleton />
-                <CardSkeleton />
-                <CardSkeleton />
-                <CardSkeleton />
-                <CardSkeleton />     
-                </div>
-            </div>
-
-            <div className="featured">
-                <h1 className="title">Featured Movie</h1>
-                <div className="container_featured">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                
-                </div>
-            </div> */}
-        </div>
+                    </div>))}
+        </div >
 
     )
 }

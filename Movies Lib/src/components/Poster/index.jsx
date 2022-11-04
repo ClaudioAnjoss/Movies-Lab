@@ -1,16 +1,12 @@
 import React from 'react';
 import { BiArrowFromLeft } from 'react-icons/bi'
 
-import Thumbnail from '../../assets/Thumbnail.png'
 import Note from '../../assets/Note.png'
 import Relevance from '../../assets/Relevance.png'
 
 import './style.css'
-import { useState } from 'react';
-import { useEffect } from 'react';
 
-function Poster({item}) {
-    
+function Poster({item}) {    
     return (
         <div className='poster'>
             <img className='thumbnail' src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} alt="Thumbnail" />
@@ -19,12 +15,10 @@ function Poster({item}) {
                 <h1>{item.title}</h1>
 
                 <div className='note'>
-                    <span>
-                        <img src={Note} />
+                    <span><img src={Note} />
                         {item.vote_average}
                     </span>
-                    <span>
-                        <img src={Relevance} />
+                    <span><img src={Relevance} />
                         {item.vote_count}
                     </span>
                 </div>
@@ -34,8 +28,7 @@ function Poster({item}) {
                 </p>
 
                 <a className='btn-detail' href="#">
-                    <BiArrowFromLeft className='icon' />
-                    Detalhes
+                    <BiArrowFromLeft className='icon' /> Detalhes
                 </a>
             </div>
         </div>

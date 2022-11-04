@@ -8,8 +8,5 @@
     padding: 0;
     box-sizing: border-box;
     font-family: SF Pro;
-}
-
-html {
     scroll-behavior: smooth;
 }
