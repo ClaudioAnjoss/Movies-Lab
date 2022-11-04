@@ -6,10 +6,11 @@ import Note from '../../assets/Note.png'
 import Relevance from '../../assets/Relevance.png'
 
 import './style.css'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function Poster({item}) {
-
-    // console.log(item)
+    
     return (
         <div className='poster'>
             <img className='thumbnail' src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} alt="Thumbnail" />

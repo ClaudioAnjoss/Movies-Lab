@@ -6,7 +6,7 @@ import './style.css'
 
 function Card(item) {
 
-  // console.log(item.item)
+  // console.log(item)
   return (
     <div className='card'>
       <img src={`https://image.tmdb.org/t/p/w300/${item.item.poster_path}`} alt={item.item.name ? item.item.name : item.item.title} />

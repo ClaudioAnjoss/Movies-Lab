@@ -75,5 +75,18 @@ export default {
         }
 
         return info
+    },
+    getSearch: async (name) => {
+        if(name != []) {
+            console.log('realizar a busca')
+
+            return [
+                {
+                    items: await basicFetch(`/search/movie?api_key=${API_KEY}&query=${name}`)
+                }
+            ]
+        } else {
+            return []
+        }
     }
 }
