@@ -9,6 +9,7 @@ import CardSkeleton from "../../components/CardSkeleton";
 import Loader from "../../assets/Loader.gif";
 
 import './style.css'
+import { Link, Outlet } from "react-router-dom";
 
 const Home = () => {
     const [movieList, setMovieList] = useState([]);
@@ -17,6 +18,7 @@ const Home = () => {
     const [movieSearch, setMovieSearch] = useState([]);
     const firstRenderRef = useRef(true);
     const [searchState, setSearchState] = useState(600);
+    const [searchResult, setSearchResult] = useState('')
 
     useEffect(() => {
         const loadAll = async () => {
@@ -49,6 +51,8 @@ const Home = () => {
         await r == '' ? setMovieSearch([]) : setMovieSearch(searchResult)
 
         r.length > 0 ? setSearchState(100) : setSearchState(600);
+
+        setSearchResult(r)
     }
 
     return (
@@ -61,7 +65,7 @@ const Home = () => {
 
             {movieSearch.length > 0 ? (
                 <div className="featured">
-                    <h1 className="title">Resultado:</h1>
+                    <h1 className="title">Resultado para: {searchResult}</h1>
 
                     <div className="container_result">
                         {movieSearch[0].items.results.map((item, keys) => (
@@ -98,8 +102,9 @@ const Home = () => {
                             <CardSkeleton />
                         </div>
                     </div>))}
-        </div >
 
+            <Outlet />
+        </div >
     )
 }
 

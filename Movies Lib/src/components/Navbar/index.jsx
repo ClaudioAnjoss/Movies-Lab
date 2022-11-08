@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/Logo.png'
 import Menu from '../../assets/Menu.png'
@@ -16,10 +17,10 @@ function Navbar(props) {
 
     return (
         <div className='navbar'>
-            <div className="logo">
+            <Link to="/" className="logo">
                 <img src={Logo} alt="Movie Box" />
                 <h1>MovieBox</h1>
-            </div>
+            </Link>
 
             <form onSubmit={handleSubmit} className='search'>
                 <input type="text" placeholder='What do you want to watch?' onChange={(e) => setSearch(e.target.value)} value={search} />

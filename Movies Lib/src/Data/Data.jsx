@@ -88,5 +88,5 @@ export default {
         } else {
             return []
         }
-    }
+    },
 }
