@@ -5,10 +5,12 @@ import Data from '../../data/Data';
 import Navbar from "../../components/Navbar";
 
 import './style.css'
+import { useRef } from 'react';
 
 const Movie = () => {
     const {id} = useParams();
     const [movie, setMovie] = useState(null);
+    const movieStatus = useRef(true);
 
     // console.log(id)
 
@@ -18,25 +20,38 @@ const Movie = () => {
             let type = '';
             let chosen = await Data.getMovieInfo(id, 'movie');
 
-            chosen.status_code ? type = 'tv' : type = 'movie';
+            await chosen.status_code ? type = 'tv' : type = 'movie';
 
             let chosenInfo = await Data.getMovieInfo(id, type);
 
             // console.log(type)
 
-            // setMovie(chosenInfo)
-            console.log(chosenInfo)
+            setMovie(chosenInfo)
+            // console.log(chosenInfo)
         }
 
-        movieInfo(id)
+        movieStatus ? movieInfo(id) : movieStatus = false;
 
         console.log(movie)
+
+        
+
+        // movie ? movieStatus = false : movieStatus = true;
+        // console.log(movieStatus)
+        // movieStatus ? movieInfo(id) : ''
+
     }, [])
 
     return (
         <div>
             {movie && (
-                <div className="container--movie">
+                <div className="container--movie" 
+                style={{
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`
+                }}
+                >
                 <Navbar />
                 <h1>{movie.title}</h1>
             </div>
