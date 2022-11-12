@@ -6,12 +6,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Home /> */}
-
-      <Link to="/"> inicio </Link>
-      <Link to="/movie/1"> movie </Link>
-      <Link to="/search"> search </Link>
-
       <Outlet />
     </div>
   )
