@@ -1,0 +1,121 @@
+.poster {
+    width: 100%;
+    height: 600px;
+    
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    z-index: 1;
+
+    transition: all ease .5s;
+
+    /* transform: translateY(-500px); */
+
+    .thumbnail {
+        width: auto;
+    
+        min-height: 500px;
+    }
+    
+    .info {
+        width: 100%;
+        max-width: 404px;
+    
+        position: absolute;
+        top: 158px;
+        left: 98px;
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+        
+            color: #fff;
+        }
+        
+        .note {
+            width: 184px;
+            height: 17px;
+        
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        
+            color: #fff;
+            font-weight: 400;
+            font-size: 12px;
+
+            span {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            span img {
+                height: 17px;
+                max-width: 35px;
+            
+                margin-right: 10px;
+            }
+        }
+        
+        
+    
+    }
+    
+    
+    
+    .description {
+        max-width: 300px;
+    
+        font-weight: 500;
+        font-size: 14px;
+        color: #FFFFFF;
+        margin-top: 16px;
+    }
+    
+    .btn-detail {
+        width: 169px;
+        height: 36px;
+    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    
+        padding: 6px 16px;
+        gap: 8px;
+        background: #BE123C;
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-top: 24px;
+
+        .icon {
+            font-size: 20px;
+        }
+    }
+    
+    
+}
+
+
+
+@media (min-width: 1400px) {
+    .poster .thumbnail {
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .poster .info {
+        top: 180px;
+        left: 20px;
+    } 
+}

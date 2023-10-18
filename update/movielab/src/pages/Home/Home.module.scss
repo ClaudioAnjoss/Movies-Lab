@@ -1,0 +1,135 @@
+.container {
+    min-height: 100vh;
+
+    position: relative;
+}
+
+.poster--loader {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px;
+}
+
+.featured {
+    padding: 70px 98px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featured .title {
+    width: 100%;
+    max-width: 1573px;
+
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.movieList {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.movie--left,
+.movie--right {
+    width: 40px;
+    height: 440px;
+
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    cursor: pointer;
+    z-index: 5;
+    opacity: 0.8;
+    transition: all ease .5s;
+    border: none;
+    background: none;
+}
+
+.movie--left:hover,
+.movie--right:hover {
+    opacity: 1;
+}
+
+.movie--left {
+    left: 0px;
+}
+
+.movie--right {
+    right: 0px;
+}
+
+.container_featured {
+    width: 100%;
+    height: 512px;
+    max-width: 1573px;
+    min-width: 280px;
+
+    display: flex;
+}
+
+.container_featured .movie--list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    gap: 60px;
+    transition: all ease .5s;
+}
+
+.container_featured .movie--list::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+}
+
+.container_featured .movie--list::-webkit-scrollbar-thumb {
+    background-color: #BE123C;
+    border-radius: 4px;
+}
+
+.container_featured .movie--list::-webkit-scrollbar-track {
+    background-color: #9CA3AF;
+    border-radius: 4px;
+}
+
+.container_result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.container--poster {
+    overflow: hidden;
+    transition: all ease .5s;
+    display: flex;
+    justify-content: center;
+}
+
+.loading--poster {
+    width: 300px;
+    height: 300px;
+
+    margin-top: 5%;
+}
+
+.container_skeleton {
+    width: 100%;
+    height: 512px;
+    max-width: 1573px;
+    min-width: 280px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
