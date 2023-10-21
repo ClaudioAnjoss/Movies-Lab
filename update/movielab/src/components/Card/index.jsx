@@ -1,27 +1,29 @@
+/* eslint-disable camelcase */
 import { Link } from 'react-router-dom'
 import Note from '../../assets/Note.png'
 import Relevance from '../../assets/Relevance.png'
 import styles from './Card.module.scss'
 
-function Card() {
+function Card({ title, name, poster_path, vote_average, vote_count }) {
+  console.log(title, poster_path, vote_average, vote_count)
   return (
     <div className={styles.card}>
       <Link to={`/movie/`}>
         <img
           className={styles.card_thumb}
-          src="https://img.elo7.com.br/product/zoom/2368C5D/big-poster-filme-marvel-venom-tamanho-90x60-cm-loot-op-010-geek.jpg"
-          alt=""
+          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+          alt={title || name}
         />
       </Link>
 
-      <h1>name</h1>
+      <h1>{title || name}</h1>
 
       <div className="note">
         <span>
-          <img src={Note} alt="" />
+          <img src={Note} alt="" /> {vote_average}
         </span>
         <span>
-          <img src={Relevance} alt="" />
+          <img src={Relevance} alt="" /> {vote_count}
         </span>
       </div>
     </div>
