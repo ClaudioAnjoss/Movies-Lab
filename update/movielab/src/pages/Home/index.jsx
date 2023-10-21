@@ -5,7 +5,6 @@ import CardSkeleton from 'components/CardSkeleton'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import styles from './Home.module.scss'
 import { useSelector } from 'react-redux'
-import { getHomeList } from 'store/getMovie/getMovie'
 
 export default function Home() {
   const movies = useSelector((state) => {
@@ -23,30 +22,38 @@ export default function Home() {
         {/* <img className="loading--poster" src={Loader} /> */}
       </div>
 
-      <div className={styles.featured}>
+      {/* <div className={styles.featured}>
         <h1 className={styles.title}>Resultado para: </h1>
 
         <div className={styles.container_result}>
           <Card />
         </div>
-      </div>
-      <div className={styles.featured}>
-        <h1 className={styles.title}>titulo</h1>
+      </div> */}
 
-        <div className={styles.container_featured}>
-          <button className={styles['movie--left']}>
-            <AiOutlineLeft />
-          </button>
+      {movies.map(({ title, item }, index) => (
+        <div key={index} className={styles.featured}>
+          <h1 className={styles.title}>{title}</h1>
 
-          <div className={styles['movie--list']}>
-            <Card />
+          <div className={styles.container_featured}>
+            <button className={styles['movie--left']}>
+              <AiOutlineLeft />
+            </button>
+
+            <div className={styles['movie--list']}>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </div>
+            <button className={styles['movie--right']}>
+              <AiOutlineRight />
+            </button>
           </div>
-
-          <button className={styles['movie--right']}>
-            <AiOutlineRight />
-          </button>
         </div>
-      </div>
+      ))}
+
       {/* <div className={styles.featured}>
               <div className={styles.container_skeleton}>
                 <CardSkeleton />
