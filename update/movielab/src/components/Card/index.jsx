@@ -4,10 +4,10 @@ import Note from '../../assets/Note.png'
 import Relevance from '../../assets/Relevance.png'
 import styles from './Card.module.scss'
 
-function Card({ title, name, poster_path, vote_average, vote_count }) {
+function Card({ title, name, id, poster_path, vote_average, vote_count }) {
   return (
     <div className={styles.card}>
-      <Link to={`/movie/`}>
+      <Link to={`/movie/${id}`}>
         <img
           className={styles.card_thumb}
           src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
