@@ -5,7 +5,6 @@ import Relevance from '../../assets/Relevance.png'
 import styles from './Card.module.scss'
 
 function Card({ title, name, poster_path, vote_average, vote_count }) {
-  console.log(title, poster_path, vote_average, vote_count)
   return (
     <div className={styles.card}>
       <Link to={`/movie/`}>
@@ -18,7 +17,7 @@ function Card({ title, name, poster_path, vote_average, vote_count }) {
 
       <h1>{title || name}</h1>
 
-      <div className="note">
+      <div className={styles.note}>
         <span>
           <img src={Note} alt="" /> {vote_average}
         </span>

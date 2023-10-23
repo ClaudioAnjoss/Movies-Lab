@@ -62,15 +62,15 @@
                 margin-right: 10px;
             }
         }
-        
-        
-    
     }
     
     
     
     .description {
         max-width: 300px;
+        max-height: 155px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     
         font-weight: 500;
         font-size: 14px;
@@ -107,7 +107,7 @@
 
 
 
-@media (min-width: 1400px) {
+@media (min-width: 600px) {
     .poster .thumbnail {
         width: 100%;
     }

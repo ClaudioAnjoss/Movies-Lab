@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useState } from 'react'
 
 const API_KEY = '394f420e82b7b9e3e795e50b65c867ac'
 const API_BASE = 'https://api.themoviedb.org/3'
@@ -7,8 +6,6 @@ const API_BASE = 'https://api.themoviedb.org/3'
 const basicFetch = async (endpoint) => {
   const req = await fetch(`${API_BASE}${endpoint}`)
   const res = await req.json()
-
-  // console.log(res.results)
 
   return res.results
 }
@@ -77,6 +74,37 @@ const initialState = async () => {
 const movieSlice = createSlice({
   name: 'movies',
   initialState,
+  reducers: {
+    async getMovieInfo(type, { payload }) {
+      let info = {}
+
+      console.log(payload)
+
+      if (payload) {
+        switch (type) {
+          case 'movie':
+            info = await basicFetch(
+              `/movie/${payload}?language=pt-BR&api_key=${API_KEY}`,
+            )
+            break
+
+          case 'tv':
+            info = await basicFetch(
+              `/tv/${payload}?language=pt-BR&api_key=${API_KEY}`,
+            )
+            break
+
+          default:
+            info = null
+
+            break
+        }
+      }
+
+      return info
+    },
+  },
 })
 
+export const { getMovieInfo } = movieSlice.actions
 export default movieSlice.reducer
