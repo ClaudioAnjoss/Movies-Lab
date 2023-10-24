@@ -75,37 +75,16 @@ const movieSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    getMovieInfo(state, { payload }) {
-      const info = []
-
-      console.log(state)
-      // console.log(payload)
-
-      // if (movieID) {
-      //   switch (type) {
-      //     case 'movie':
-      //       info = await basicFetch(
-      //         `/movie/${movieID}?language=pt-BR&api_key=${API_KEY}`,
-      //       )
-      //       break
-
-      //     case 'tv':
-      //       info = await basicFetch(
-      //         `/tv/${movieID}?language=pt-BR&api_key=${API_KEY}`,
-      //       )
-      //       break
-
-      //     default:
-      //       info = null
-
-      //       break
-      //   }
-      // }
-
+    async getMovieInfo(state, { payload }) {
+      console.log(payload)
+      let info = []
+      info = await basicFetch(
+        `/movie/${payload}?language=pt-BR&api_key=${API_KEY}`,
+      )
       return info
     },
   },
 })
 
-export const { getMovieInfo, testando, mudarCarrinho } = movieSlice.actions
+export const { getMovieInfo } = movieSlice.actions
 export default movieSlice.reducer

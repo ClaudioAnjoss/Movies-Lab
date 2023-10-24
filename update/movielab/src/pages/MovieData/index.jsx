@@ -10,10 +10,12 @@ export default function MovieData() {
   const { id } = useParams()
   const dispatch = useDispatch()
 
-  console.log(id)
+  // console.log(id)
 
   function testi() {
-    dispatch(getMovieInfo(16, 'movie'))
+    dispatch(getMovieInfo(id, 'movie'))
+
+    console.log(dispatch(getMovieInfo(id)))
     // console.log(dispatch(mudarCarrinho(12)))
   }
 
@@ -25,7 +27,7 @@ export default function MovieData() {
         style={{
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundImage: `url('https://image.tmdb.org/t/p/original')`,
+          backgroundImage: `url('https://image.tmdb.org/t/p/original/628Dep6AxEtDxjZoGP78TsOxYbK.jpg')`,
         }}
       >
         <div className={styles['shadow--vertical']}>
