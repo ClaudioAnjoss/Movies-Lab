@@ -10,15 +10,6 @@ export default function MovieData() {
   const { id } = useParams()
   const dispatch = useDispatch()
 
-  // console.log(id)
-
-  function testi() {
-    dispatch(getMovieInfo(id, 'movie'))
-
-    console.log(dispatch(getMovieInfo(id)))
-    // console.log(dispatch(mudarCarrinho(12)))
-  }
-
   return (
     <div>
       <Navbar />
@@ -53,7 +44,7 @@ export default function MovieData() {
                   nota
                 </span>
               </div>
-              <a href="#" className={styles['btn-back']} onClick={testi}>
+              <a href="#" className={styles['btn-back']}>
                 Back
               </a>
             </div>

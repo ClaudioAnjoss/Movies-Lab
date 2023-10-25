@@ -77,8 +77,7 @@ const movieSlice = createSlice({
   reducers: {
     async getMovieInfo(state, { payload }) {
       console.log(payload)
-      let info = []
-      info = await basicFetch(
+      const info = await basicFetch(
         `/movie/${payload}?language=pt-BR&api_key=${API_KEY}`,
       )
       return info
