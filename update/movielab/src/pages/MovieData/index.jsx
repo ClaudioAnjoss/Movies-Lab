@@ -3,12 +3,13 @@ import Note from 'assets/Note.png'
 import Relevance from 'assets/Relevance.png'
 import styles from './MovieData.module.scss'
 import { useParams } from 'react-router-dom'
-import { getMovieInfo, mudarCarrinho, testando } from 'store/getMovie/getMovie'
-import { useDispatch } from 'react-redux'
+
+import { useQuery } from 'react-query'
 
 export default function MovieData() {
   const { id } = useParams()
-  const dispatch = useDispatch()
+
+  const {} = useQuery('filmes', () => {})
 
   return (
     <div>
