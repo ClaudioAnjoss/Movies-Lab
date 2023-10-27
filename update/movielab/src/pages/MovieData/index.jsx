@@ -26,6 +26,8 @@ export default function MovieData() {
     },
   )
 
+  console.log(data)
+
   return (
     <div className={styles['container--loading']}>
       {isFetching && <img src={Loader} alt="Carregando" />}

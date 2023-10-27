@@ -67,15 +67,6 @@ const initialState = async () => {
 const movieSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {
-    async getMovieInfo(state, { payload }) {
-      console.log(payload)
-      const info = await basicFetch(
-        `/movie/${payload}?language=pt-BR&api_key=${API_KEY}`,
-      )
-      return info
-    },
-  },
 })
 
 export const { getMovieInfo } = movieSlice.actions

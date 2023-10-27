@@ -11,6 +11,11 @@ import styles from './Home.module.scss'
 export default function Home() {
   const [filmes, setFilmes] = useState([])
   const [featuredCover, setFeaturedCover] = useState()
+  const [results, setResults] = useState()
+
+  const searchResults = useSelector((e) => e.results)
+
+  console.log(searchResults)
 
   const movies = useSelector((state) => {
     return state.movies
@@ -29,7 +34,7 @@ export default function Home() {
       setFilmes(e)
 
       // Featured
-      const action = e.filter((i) => i.slug === 'action')
+      const action = e.filter((i) => i.slug === 'comedy')
       const randomChosen = Math.floor(
         Math.random() * (action[0].item.length - 1),
       )
@@ -50,9 +55,19 @@ export default function Home() {
             alt="Capa do filme"
           />
         )}
-
-        {/* <img className="loading--poster" src={Loader} /> */}
       </div>
+
+      {searchResults.map(({ results }, index) => (
+        <div key={index} className={styles.featured}>
+          <h1 className={styles.title}>Resultado para: </h1>
+
+          <div className={styles.container_result}>
+            {results.map((data, index) => (
+              <Card key={index} {...data} />
+            ))}
+          </div>
+        </div>
+      ))}
 
       {/* <div className={styles.featured}>
         <h1 className={styles.title}>Resultado para: </h1>
