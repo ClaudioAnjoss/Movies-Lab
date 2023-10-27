@@ -1,5 +1,6 @@
 .container--movie {
     height: 100vh;
+    height: 100%;
     
     display: flex;
     flex-direction: column;
@@ -24,7 +25,7 @@
     }
     
     .data--movie {
-        width: inherit;
+        width: 100vw;
         height: inherit;
     
         display: flex;
@@ -41,7 +42,8 @@
     
     p {
         font-size: 1.8em;
-        width: 40%;
+        width: 70%;
+        word-break: break-word;
     
     
         margin: 1% 0;
@@ -81,4 +83,13 @@
     text-decoration: none;
     border-radius: 7px;
     margin-top: 2%;
+    cursor: pointer;
+}
+
+.container--loading {
+    background: #ccc;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

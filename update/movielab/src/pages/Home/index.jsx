@@ -40,8 +40,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Navbar />
-
       <div className={styles['container--poster']}>
         {featuredCover ? (
           <Poster {...featuredCover} />

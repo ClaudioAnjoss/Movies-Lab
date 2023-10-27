@@ -13,13 +13,6 @@ const basicFetch = async (endpoint) => {
 const initialState = async () => {
   return [
     {
-      slug: 'originals',
-      title: 'Originais',
-      item: await basicFetch(
-        `/discover/tv?with_network=213&language=pt-BR&api_key=${API_KEY}`,
-      ),
-    },
-    {
       slug: 'trending',
       title: 'Recomendados',
       item: await basicFetch(
