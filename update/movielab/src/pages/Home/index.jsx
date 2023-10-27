@@ -69,6 +69,18 @@ export default function Home() {
         </div>
       ))}
 
+      {/* {searchResults.map(({ results }, index) => (
+        <div key={index} className={styles.featured}>
+          <h1 className={styles.title}>Resultado para: </h1>
+
+          <div className={styles.container_result}>
+            {results.map((data, index) => (
+              <Card key={index} {...data} />
+            ))}
+          </div>
+        </div>
+      ))} */}
+
       {/* <div className={styles.featured}>
         <h1 className={styles.title}>Resultado para: </h1>
 
