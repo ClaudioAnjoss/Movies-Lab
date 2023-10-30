@@ -6,18 +6,20 @@ import styles from './Navbar.module.scss'
 import { useState } from 'react'
 import axios from 'axios'
 import { getResults } from 'store/searchMovie/searchMovie'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSearch } from 'store/reducers/search'
 
 export default function Navbar() {
-  const [search, setSearch] = useState('')
+  const search = useSelector((state) => state.search)
+  // const [search, setSearch] = useState('')
   const dispatch = useDispatch()
 
-  const handleSubMit = async (e) => {
+  const handleSubMit = (e) => {
     e.preventDefault()
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=394f420e82b7b9e3e795e50b65c867ac&query=${search}`,
-    )
-    return dispatch(getResults(response.data))
+    // const response = await axios.get(
+    //   `https://api.themoviedb.org/3/search/movie?api_key=394f420e82b7b9e3e795e50b65c867ac&query=${search}`,
+    // )
+    // return dispatch(getResults(response.data, search))
   }
 
   return (
@@ -31,11 +33,11 @@ export default function Navbar() {
         <input
           type="text"
           placeholder="What do you want to watch?"
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => dispatch(getSearch(e.target.value))}
           value={search}
         />
 
-        <button type="submit">
+        <button>
           <BiSearchAlt className={styles['icon-search']} />
         </button>
       </form>

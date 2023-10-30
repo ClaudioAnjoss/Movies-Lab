@@ -6,8 +6,9 @@ const searchMovieSlice = createSlice({
   name: 'searchResults',
   initialState,
   reducers: {
-    getResults(state, { payload }) {
-      return [...state, payload]
+    getResults(state, { payload }, search) {
+      console.log(search)
+      return [payload]
     },
   },
 })

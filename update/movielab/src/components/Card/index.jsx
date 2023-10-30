@@ -1,16 +1,20 @@
 /* eslint-disable camelcase */
 import { Link } from 'react-router-dom'
-import Note from '../../assets/Note.png'
-import Relevance from '../../assets/Relevance.png'
+import Note from 'assets/Note.png'
+import Relevance from 'assets/Relevance.png'
+import PhotoUn from 'assets/photoUnavailable.jpg'
 import styles from './Card.module.scss'
 
 function Card({ title, name, id, poster_path, vote_average, vote_count }) {
+  const validatePhoto = poster_path
+    ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+    : PhotoUn
   return (
     <div className={styles.card}>
       <Link to={`/movie/${id}`}>
         <img
           className={styles.card_thumb}
-          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+          src={validatePhoto}
           alt={title || name}
         />
       </Link>
