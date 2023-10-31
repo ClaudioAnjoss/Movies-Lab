@@ -8,21 +8,34 @@ import { useEffect, useState } from 'react'
 import CoverLoading from 'assets/Loader.gif'
 import styles from './Home.module.scss'
 import axios from 'axios'
-import { useQuery } from 'react-query'
+import {
+  QueryClient,
+  useInfiniteQuery,
+  useMutation,
+  useQueries,
+  useQuery,
+  useQueryClient,
+} from 'react-query'
 
 export default function Home() {
   const search = useSelector((state) => state.search)
   const [filmes, setFilmes] = useState([])
   const [featuredCover, setFeaturedCover] = useState()
-  const [pesquisa, setPesquisa] = useState()
+  const [pesquisa, setPesquisa] = useState({})
 
-  const { data, isFetching } = useQuery('search', async () => {
+  const { data, isLoading, refetch } = useQuery('search', async () => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=394f420e82b7b9e3e795e50b65c867ac&query=${search}`,
     )
 
     return response.data.results
   })
+
+  if (search) {
+    console.log('chegou aqui')
+  }
+
+  console.log(data)
 
   const searchResults = useSelector((e) => e.results)
 
@@ -66,11 +79,23 @@ export default function Home() {
         )}
       </div>
 
-      {data?.map((e) => console.log(e))}
+      <div className={styles.featured}>
+        <h1 className={styles.title}>Resultado para: {search} </h1>
+
+        <div className={styles.container_result}>
+          {search &&
+            data?.map((e, index) => (
+              <>
+                {console.log(e)}
+                <Card key={index} {...e} />
+              </>
+            ))}
+        </div>
+      </div>
 
       {searchResults.map(({ results }, index) => (
         <div key={index} className={styles.featured}>
-          <h1 className={styles.title}>Resultado para: </h1>
+          <h1 className={styles.title}>Resultado para: {search}</h1>
 
           <div className={styles.container_result}>
             {results.map((data, index) => (
