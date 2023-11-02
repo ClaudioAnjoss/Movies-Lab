@@ -35,8 +35,6 @@ export default function Home() {
     console.log('chegou aqui')
   }
 
-  console.log(data)
-
   const searchResults = useSelector((e) => e.results)
 
   const movies = useSelector((state) => {
