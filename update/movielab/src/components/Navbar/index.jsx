@@ -11,16 +11,10 @@ import { getSearch } from 'store/reducers/search'
 
 export default function Navbar() {
   const search = useSelector((state) => state.search)
-  // const [search, setSearch] = useState('')
   const dispatch = useDispatch()
 
   const handleSubMit = (e) => {
     e.preventDefault()
-    dispatch(getSearch(e.target[0].value))
-    // const response = await axios.get(
-    //   `https://api.themoviedb.org/3/search/movie?api_key=394f420e82b7b9e3e795e50b65c867ac&query=${search}`,
-    // )
-    // return dispatch(getResults(response.data, search))
   }
 
   return (
@@ -34,8 +28,8 @@ export default function Navbar() {
         <input
           type="text"
           placeholder="What do you want to watch?"
-          // onChange={(e) => dispatch(getSearch(e.target.value))}
-          // value={target.value}
+          onChange={(e) => dispatch(getSearch(e.target.value))}
+          value={search}
         />
 
         <button>
