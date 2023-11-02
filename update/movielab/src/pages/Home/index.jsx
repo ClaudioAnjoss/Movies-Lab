@@ -2,24 +2,36 @@ import Poster from 'components/Poster'
 import Card from 'components/Card'
 import CardSkeleton from 'components/CardSkeleton'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import CoverLoading from 'assets/Loader.gif'
 import styles from './Home.module.scss'
 import useFetchSearchMovies from 'queries/search'
+import { setPages } from 'store/reducers/pagination'
 
 export default function Home() {
+  // Variaveis de Ambiente
   const search = useSelector((state) => state.search)
+  const page = useSelector((state) => state.pages)
+
+  const dispatch = useDispatch()
+
   const [filmes, setFilmes] = useState([])
   const [featuredCover, setFeaturedCover] = useState()
 
-  const { data, isLoading } = useFetchSearchMovies(search)
+  const skeleton = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ]
 
-  console.log(data)
+  const { data, isLoading } = useFetchSearchMovies(search, page)
 
   const movies = useSelector((state) => {
     return state.movies
   })
+
+  if (page > data?.total_pages) {
+    dispatch(setPages(1))
+  }
 
   const handeLeftArrow = (category) => {
     document.getElementById(`${category}`).scrollLeft -= window.innerWidth / 2
@@ -65,14 +77,26 @@ export default function Home() {
           </div>
 
           <div className={styles.container_result}>
-            {!isLoading ? (
-              data.results?.map((e, index) => <Card key={index} {...e} />)
-            ) : (
-              <img src={CoverLoading} alt="Carregando.." />
-            )}
+            {!isLoading
+              ? data?.results?.map((e, index) => <Card key={index} {...e} />)
+              : skeleton.map((e) => <CardSkeleton key={e} />)}
           </div>
-          <div>
-            <button>paginacao</button>
+          <div className={styles.container_pages}>
+            <button
+              // onClick={() => setPage((old) => Math.max(old - 1, 1))}
+              onClick={() => dispatch(setPages(Math.max(page - 1, 1)))}
+              disabled={page === 1}
+            >
+              Pagina Anterior
+            </button>
+            <span>Pagina atual: {page} </span>
+            <button
+              // onClick={() => setPage((old) => old + 1)}
+              onClick={() => dispatch(setPages(page + 1))}
+              disabled={data?.total_pages <= page}
+            >
+              Proxima Pagina
+            </button>
           </div>
         </div>
       ) : (

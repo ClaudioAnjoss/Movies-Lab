@@ -5,6 +5,8 @@ import Note from 'assets/Note.png'
 import Relevance from 'assets/Relevance.png'
 import styles from './Poster.module.scss'
 import { useState } from 'react'
+import classNames from 'classnames'
+import { useSelector } from 'react-redux'
 
 export default function Poster({
   title,
@@ -16,8 +18,10 @@ export default function Poster({
   vote_average,
   vote_count,
 }) {
+  const search = useSelector((state) => state.search)
+
   return (
-    <div className={styles.poster}>
+    <div className={classNames(styles.poster, { [styles.active]: search })}>
       <img
         className={styles.thumbnail}
         src={`https://image.tmdb.org/t/p/original${backdrop_path}`}

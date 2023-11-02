@@ -16,6 +16,10 @@
 
     /* transform: translateY(-500px); */
 
+    &.active {
+        height: 100px;
+    }
+
     .thumbnail {
         width: auto;
     
@@ -104,6 +108,7 @@
     
     
 }
+
 
 
 
