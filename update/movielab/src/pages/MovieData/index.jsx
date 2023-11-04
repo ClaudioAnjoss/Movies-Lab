@@ -1,32 +1,14 @@
-import Navbar from 'components/Navbar'
+import { useNavigate, useParams } from 'react-router-dom'
+import useFetchFilmCover from 'queries/cover'
 import Note from 'assets/Note.png'
 import Relevance from 'assets/Relevance.png'
 import styles from './MovieData.module.scss'
-import { useNavigate, useParams } from 'react-router-dom'
-
-import { useQuery } from 'react-query'
 import Loader from 'assets/Loader.gif'
-import axios from 'axios'
 
 export default function MovieData() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { data, isFetching } = useQuery(
-    'dataFilme',
-    async () => {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}?language=pt-BR&api_key=394f420e82b7b9e3e795e50b65c867ac`,
-      )
-
-      return response.data
-    },
-    {
-      staleTime: false,
-      cacheTime: false,
-    },
-  )
-
-  console.log(data)
+  const { data, isFetching } = useFetchFilmCover(id)
 
   return (
     <div className={styles['container--loading']}>

@@ -7,16 +7,17 @@ import styles from './Poster.module.scss'
 import { useState } from 'react'
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import useFetchMovies from 'queries/movies'
 
 export default function Poster({
   title,
   name,
   overview,
   backdrop_path,
-  poster_path,
-  popularity,
   vote_average,
   vote_count,
+  id,
 }) {
   const search = useSelector((state) => state.search)
 
@@ -44,9 +45,9 @@ export default function Poster({
 
         <p className={styles.description}>{overview}</p>
 
-        <a className={styles['btn-detail']} href="#fodasse">
+        <Link to={`/movie/${id}`} className={styles['btn-detail']}>
           <BiArrowFromLeft className={styles.icon} /> Detalhes
-        </a>
+        </Link>
       </div>
     </div>
   )

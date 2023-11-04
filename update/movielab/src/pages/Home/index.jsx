@@ -8,6 +8,7 @@ import CoverLoading from 'assets/Loader.gif'
 import styles from './Home.module.scss'
 import useFetchSearchMovies from 'queries/search'
 import { setPages } from 'store/reducers/pagination'
+import useFetchMovies from 'queries/movies'
 
 export default function Home() {
   // Variaveis de Ambiente
@@ -24,6 +25,10 @@ export default function Home() {
   ]
 
   const { data, isLoading } = useFetchSearchMovies(search, page)
+
+  const listFilm = useFetchMovies()
+
+  console.log(listFilm)
 
   const movies = useSelector((state) => {
     return state.movies

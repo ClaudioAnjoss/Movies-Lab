@@ -13,8 +13,6 @@ const options = {
 async function searchMovies(ctx) {
   const [, inputSearch, options, page] = ctx.queryKey
 
-  console.log(options)
-
   const { data } = await api.get(
     `https://api.themoviedb.org/3/search/movie?query=${inputSearch}&include_adult=false&language=pt-US&page=${page}`,
     options,
