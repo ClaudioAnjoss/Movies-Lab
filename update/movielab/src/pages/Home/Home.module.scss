@@ -39,32 +39,7 @@
         margin-bottom: 40px;
     }
 
-    .container_pages {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: space-around;
-
-        button {
-        
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        
-            padding: 1%;
-            gap: 8px;
-            background: #BE123C;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 14px;
-            margin-top: 24px;
-            border: none;
-            cursor: pointer;
-        }
-    }
+    
 }
 
 

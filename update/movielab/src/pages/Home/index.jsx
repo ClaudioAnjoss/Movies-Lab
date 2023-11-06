@@ -1,33 +1,27 @@
+import styles from './Home.module.scss'
 import Poster from 'components/Poster'
 import Card from 'components/Card'
 import CardSkeleton from 'components/CardSkeleton'
+import CoverLoading from 'assets/Loader.gif'
+import useFetchSearchMovies from 'queries/search'
+import useFetchMovies from 'queries/movies'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import CoverLoading from 'assets/Loader.gif'
-import styles from './Home.module.scss'
-import useFetchSearchMovies from 'queries/search'
+import { useEffect } from 'react'
 import { setPages } from 'store/reducers/pagination'
-import useFetchMovies from 'queries/movies'
 import { setCover } from 'store/reducers/cover'
+import NavigationBar from 'components/NavigationBar'
 
 export default function Home() {
+  const dispatch = useDispatch()
+
   // Variaveis de Ambiente
   const search = useSelector((state) => state.search)
   const page = useSelector((state) => state.pages)
   const cover = useSelector((state) => state.cover)
-  const [featuredCover, setFeaturedCover] = useState() // criar uma variavel de ambiente
 
-  console.log(cover)
-
-  const dispatch = useDispatch()
-
-  const skeleton = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ]
-
-  const listFilm = useFetchMovies()
-  const { data, isLoading } = useFetchSearchMovies(search, page)
+  const listFilm = useFetchMovies() // Lista de filmes
+  const { data, isLoading } = useFetchSearchMovies(search, page) // Resultado da pesquisa por filmes
 
   if (page > data?.total_pages) {
     dispatch(setPages(1))
@@ -41,11 +35,8 @@ export default function Home() {
     document.getElementById(`${category}`).scrollLeft += window.innerWidth / 2
   }
 
-  // console.log(!listFilm.isLoading)
-
   useEffect(() => {
-    if (!listFilm?.isLoading) {
-      console.log('chegou aqui')
+    if (listFilm.status === 'success' && cover.length < 1) {
       // Featured
       const action = listFilm?.data?.filter((i) => i.title === 'Comédia')
       const randomChosen = Math.floor(
@@ -53,21 +44,21 @@ export default function Home() {
       )
       const chosen = action[0].item.data.results[randomChosen]
       dispatch(setCover(chosen))
-      setFeaturedCover(chosen)
     }
-  }, [listFilm.isLoading])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listFilm.status])
 
   return (
     <div className={styles.container}>
       <div className={styles['container--poster']}>
-        {cover ? (
-          <Poster {...cover} />
-        ) : (
+        {cover.length === 0 ? (
           <img
             className={styles['loading--poster']}
             src={CoverLoading}
             alt="Capa do filme"
           />
+        ) : (
+          <Poster {...cover} />
         )}
       </div>
 
@@ -79,27 +70,17 @@ export default function Home() {
           </div>
 
           <div className={styles.container_result}>
-            {!isLoading
-              ? data?.results?.map((e, index) => <Card key={index} {...e} />)
-              : skeleton.map((e) => <CardSkeleton key={e} />)}
+            {!isLoading ? (
+              data?.results?.map((e, index) => <Card key={index} {...e} />)
+            ) : (
+              <CardSkeleton times={20} />
+            )}
           </div>
-          <div className={styles.container_pages}>
-            <button
-              // onClick={() => setPage((old) => Math.max(old - 1, 1))}
-              onClick={() => dispatch(setPages(Math.max(page - 1, 1)))}
-              disabled={page === 1}
-            >
-              Pagina Anterior
-            </button>
-            <span>Pagina atual: {page} </span>
-            <button
-              // onClick={() => setPage((old) => old + 1)}
-              onClick={() => dispatch(setPages(page + 1))}
-              disabled={data?.total_pages <= page}
-            >
-              Proxima Pagina
-            </button>
-          </div>
+          <NavigationBar
+            times={data?.total_pages}
+            totalPages={data?.total_pages}
+            pageActive={data?.page}
+          />
         </div>
       ) : (
         listFilm?.data?.map(({ title, item }, index) => (

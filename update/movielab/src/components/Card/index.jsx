@@ -23,10 +23,10 @@ function Card({ title, name, id, poster_path, vote_average, vote_count }) {
 
       <div className={styles.note}>
         <span>
-          <img src={Note} alt="" /> {vote_average}
+          <img src={Note} alt={title || name} /> {vote_average}
         </span>
         <span>
-          <img src={Relevance} alt="" /> {vote_count}
+          <img src={Relevance} alt={title || name} /> {vote_count}
         </span>
       </div>
     </div>

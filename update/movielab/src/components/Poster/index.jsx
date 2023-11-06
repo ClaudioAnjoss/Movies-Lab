@@ -4,11 +4,9 @@ import { BiArrowFromLeft } from 'react-icons/bi'
 import Note from 'assets/Note.png'
 import Relevance from 'assets/Relevance.png'
 import styles from './Poster.module.scss'
-import { useState } from 'react'
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import useFetchMovies from 'queries/movies'
 
 export default function Poster({
   title,
@@ -31,7 +29,6 @@ export default function Poster({
 
       <div className={styles.info}>
         <h1>{name || title}</h1>
-
         <div className={styles.note}>
           <span>
             <img src={Note} alt="Nota" />
